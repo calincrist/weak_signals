@@ -12,12 +12,23 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
-    <orderEntry type="inheritedJdk" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/spln/LocalModules" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/spln/spln" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/spln/splnapp" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/spln/.idea" />
+    </content>
+    <orderEntry type="jdk" jdkName="Python 2.7.10 virtualenv at ~/Documents/Projects/snlp/venv" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/spln/templates" />
+      </list>
+    </option>
   </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />
