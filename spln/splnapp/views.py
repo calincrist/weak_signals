@@ -1,8 +1,19 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 
+from LocalModules.FileHandlersModule import file_handler
 
-# Create your views here.
 
 def index(request):
-    return HttpResponse('SPNL')
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+
+        response = file_handler.handle_file(myfile)
+
+        return render(request, 'index.html', {
+            'uploaded_file_url': myfile.name,
+            'status' : response['status'],
+            'message': response['message']
+        })
+
+    return render(request, 'index.html')
+
