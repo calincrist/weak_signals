@@ -10,7 +10,9 @@ class ApiClient(object):
         self.params = params
 
     def _url(self, query):
-        return (self.baseURL + self.endpointUrl).format(str(query))
+        url = (self.baseURL + self.endpointUrl).format(str(query))
+        print('URL: ' + url)
+        return url
 
     def make_request(self, body=None):
         if self.params['method'] == 'GET':

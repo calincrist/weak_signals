@@ -34,4 +34,18 @@
     </div>
     {% include './components/table.html' %}
 
+    <div class="page-header row" style="margin-left:1rem">
+      <h3 class="col-sm-1">Entities</h3>
+      {% if status_entity == 'OK' %}
+        <span class="help-block alert alert-success col-sm-2" role="alert">
+          <strong>Well done!</strong> {{ message_entity }}
+        </span>
+      {% elif status_entity == 'ERROR' %}
+        <span class="help-block alert alert-danger col-sm-2" role="alert">
+          <strong>Oh snap!</strong> {{ message_entity }}
+        </span>
+      {% endif %}
+    </div>
+    {# {% include './components/list.html' %}#}
+
 {% endblock content %}

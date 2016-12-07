@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from django.core.files.storage import FileSystemStorage
-
+import docx2txt
 from LocalModules.ApiClientModule import api_client
 
 
@@ -28,23 +28,38 @@ class FileHandler(object):
 
     def read_contents(self):
         contents = ''
+
+        if self.filename.lower().endswith('.txt'):
+            self.contents = self.read_txt()
+
+        if self.filename.lower().endswith(('.docx', '.doc')):
+            self.contents = self.read_docx()
+
+    def read_docx(self):
+        return docx2txt.process(self.fs.path(self.file_object))
+
+    def read_txt(self):
         if not self.file_object.multiple_chunks():
             with open(self.fs.path(self.file_object), 'r') as f:
-                contents = f.read()
-        print(contents)
+                return f.read()
 
-        self.contents = contents
 
     def check_source(self):
-        response = api_client.check_source('Google has confirmed it will hit its target of offsetting 100% of the energy used at its data centres and offices against power from renewable sources.')
-        if response == {}:
+        response_content = api_client.check_source(self.contents)
+        response_title = (api_client.check_source(self.filename))
+
+        response = {x['Url']:x for x in response_content + response_title}.values()
+
+        if response == []:
             return {'status': 'ERROR',
-                    'message': 'Could not verify the news sources.'}
-        else:
-            return {'status': 'OK',
-                    'message': 'These are possible news sources.',
+                    'message': 'No sources found :(',
                     'data': response
                     }
+
+        return {'status': 'OK',
+                'message': 'These are possible news sources.',
+                'data': response
+                }
 
 
 
