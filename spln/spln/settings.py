@@ -25,7 +25,7 @@ SECRET_KEY = 'u5&g%hs8!zo_$t&-0u$)%*fczm+&e9m_6a!l626k(wwj-n$0w('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://weak-signals.herokuapp.com']
 
 
 # Application definition

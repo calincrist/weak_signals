@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd764ce9-bda2-4be2-920b-4c3d6dda17e6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Procfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/requirements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/snlp.iml" afterPath="$PROJECT_DIR$/.idea/snlp.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spln/spln/settings.py" afterPath="$PROJECT_DIR$/spln/spln/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,7 +60,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="api_client.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="api_client.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spln/LocalModules/ApiClientModule/api_client.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -98,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spln/spln/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="71" column="24" lean-forward="false" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="24" />
+            <state relative-caret-position="260">
+              <caret line="27" column="52" lean-forward="false" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -113,6 +109,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>ws</find>
+      <find>host</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -124,6 +121,7 @@
         <option value="$PROJECT_DIR$/spnlproject/spnlproject/urls.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/Procfile" />
+        <option value="$PROJECT_DIR$/spln/spln/settings.py" />
       </list>
     </option>
   </component>
@@ -575,14 +573,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spln/spln/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="71" column="24" lean-forward="false" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -611,6 +601,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spln/spln/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="27" column="52" lean-forward="false" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
           <folding />
         </state>
       </provider>
