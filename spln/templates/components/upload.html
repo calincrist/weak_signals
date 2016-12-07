@@ -1,0 +1,54 @@
+{% load static %}
+
+{% block upload-content %}
+<div class="container-fluid">
+  <div class="col-md-4">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+              <h3 class="panel-title">Upload file</h3>
+          </div>
+          <div class="panel-body">
+              <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="col-lg-12">
+                      <div class="input-group">
+                          <label class="input-group-btn">
+                          <span class="btn btn-primary">
+                              Browse… <input type="file" name="myfile" style="display: none;" multiple="">
+                          </span>
+                          </label>
+                          <input type="text" name="myfile" class="form-control" readonly="">
+                          <label class="input-group-btn">
+                          <span class="btn btn-primary">
+                              Go! <input type="submit" name="myfile" style="display: none;" multiple="">
+                          </span>
+                          </label>
+                      </div>
+
+                      {% if uploaded_file_url %}
+                          <span class="help-block">
+                          <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+                      </span>
+                      {% endif %}
+
+                      {% if status == 'OK' %}
+                          <span class="help-block alert alert-success" role="alert">
+                          <strong>Well done!</strong> {{ message }}
+                      </span>
+                      {% elif status == 'ERROR' %}
+                          <span class="help-block alert alert-danger" role="alert">
+                          <strong>Oh snap!</strong> {{ message }}
+                      </span>
+                      {% else %}
+                          <span class="help-block help-block">
+                          Try selecting one or more files and watch the analysis.
+                      </span>
+                      {% endif %}
+
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock upload-content %}

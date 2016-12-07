@@ -1,0 +1,31 @@
+{# {% extends 'index.html' %}#}
+{% load static %}
+
+{% block list-content %}
+
+{% for source_item in data_source %}
+<dl class="dl-horizontal">
+  {% for key, value in source_item.items %}
+
+    {% if key == 'Url' %}
+      <dt> {{ key }} </dt>
+      <dd class="text-overflow"> <a href="{{ value }}">Link to news.</a>  </dd>
+
+    {% elif key == 'ThumbnailUrl' and value != 'no thumbnailUrl' %}
+      <dt> {{ key }} </dt>
+      <dd class="text-overflow"> <img src="{{ value }}" alt="..." class="img-thumbnail"> </dd>
+
+    {% elif key == 'ThumbnailUrl'%}
+      {# continue/pass #}
+
+    {% else %}
+      <dt> {{ key }} </dt>
+      <dd class="text-overflow"> {{ value }} </dd>
+
+    {% endif %}
+
+  {% endfor %}
+</dl>
+{% endfor %}
+
+{% endblock list-content %}

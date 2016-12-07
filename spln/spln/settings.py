@@ -25,7 +25,10 @@ SECRET_KEY = 'u5&g%hs8!zo_$t&-0u$)%*fczm+&e9m_6a!l626k(wwj-n$0w('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'weak-signals.herokuapp.com']
+if DEBUG == True:
+    ALLOWED_HOSTS = [u'weak-signals.herokuapp.com', u'localhost']
+else:
+    ALLOWED_HOSTS = [u'weak-signals.herokuapp.com']
 
 
 # Application definition

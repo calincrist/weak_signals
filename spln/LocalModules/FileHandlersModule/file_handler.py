@@ -19,10 +19,11 @@ class FileHandler(object):
                      'message' : 'Wrong file type.'}
 
         self.read_contents()
-        self.check_source()
+        self.source_content = self.check_source()
 
         return {'status': 'OK',
-                'message': 'You successfully uploaded the input file.'}
+                'message': 'You successfully uploaded the input file.'}, self.source_content
+
 
 
     def read_contents(self):
