@@ -1,0 +1,11 @@
+{% load static %}
+
+{% block plain-content %}
+<div class="col-sm-3">
+    <ul class="list-group">
+      {% for entity in data_ner %}
+        <li class="list-group-item">{{ entity }}</li>
+      {% endfor %}
+    </ul>
+</div>
+{% endblock plain-content %}

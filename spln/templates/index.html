@@ -35,17 +35,31 @@
     {% include './components/table.html' %}
 
     <div class="page-header row" style="margin-left:1rem">
-      <h3 class="col-sm-1">Entities</h3>
+      <h3 class="col-sm-3">Sentiment analysis</h3>
       {% if status_entity == 'OK' %}
         <span class="help-block alert alert-success col-sm-2" role="alert">
-          <strong>Well done!</strong> {{ message_entity }}
+          <strong>Well done!</strong> {{ message_sentiment }}
         </span>
       {% elif status_entity == 'ERROR' %}
         <span class="help-block alert alert-danger col-sm-2" role="alert">
-          <strong>Oh snap!</strong> {{ message_entity }}
+          <strong>Oh snap!</strong> {{ message_sentiment }}
         </span>
       {% endif %}
     </div>
-    {# {% include './components/list.html' %}#}
+    {% include './components/panel.html' %}
+
+    <div class="page-header row" style="margin-left:1rem">
+      <h3 class="col-sm-1">Entities</h3>
+      {% if status_ner == 'OK' %}
+        <span class="help-block alert alert-success col-sm-2" role="alert">
+          <strong>Well done!</strong> {{ message_ner }}
+        </span>
+      {% elif status_ner == 'ERROR' %}
+        <span class="help-block alert alert-danger col-sm-2" role="alert">
+          <strong>Oh snap!</strong> {{ message_ner }}
+        </span>
+      {% endif %}
+    </div>
+    {% include './components/plain.html' %}
 
 {% endblock content %}

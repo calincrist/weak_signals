@@ -1,7 +1,16 @@
 #!/usr/bin/env python
 from django.core.files.storage import FileSystemStorage
 import docx2txt
+import subprocess
 from LocalModules.ApiClientModule import api_client
+from LocalModules.NER import ner
+
+
+def run_command(command):
+    p = subprocess.Popen(command,
+                     stdout=subprocess.PIPE,
+                     shell=True)
+    return iter(p.stdout.readline, b'')
 
 
 class FileHandler(object):
@@ -19,12 +28,19 @@ class FileHandler(object):
                      'message' : 'Wrong file type.'}
 
         self.read_contents()
-        self.source_content = self.check_source()
+        source_content = self.check_source()
+        self.sentiment_analysis()
+        entities = ner.get_ner(self.contents)
 
         return {'status': 'OK',
-                'message': 'You successfully uploaded the input file.'}, self.source_content
+                'message': 'You successfully uploaded the input file.'}, source_content, entities
 
 
+    def sentiment_analysis(self):
+        sentiment = run_command('java -jar ../Five-PointScaleAlgorithm.jar' + self.contents)
+        print('---->>')
+        print(sentiment)
+        print('<<----')
 
     def read_contents(self):
         contents = ''
