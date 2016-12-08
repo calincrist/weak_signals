@@ -8,7 +8,7 @@ class Verif:
 def get_ner(sample):
 
     if Verif.x == 0:
-        nltk.download('all-corpora')
+        nltk.download('corpora')
         Verif.x = 1
 
 
