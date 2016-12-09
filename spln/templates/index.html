@@ -36,7 +36,7 @@
 
     <div class="page-header row" style="margin-left:1rem">
       <h3 class="col-sm-3">Sentiment analysis</h3>
-      {% if status_entity == 'OK' %}
+      {% if status_sentiment == 'OK' %}
         <span class="help-block alert alert-success col-sm-2" role="alert">
           <strong>Well done!</strong> {{ message_sentiment }}
         </span>
@@ -48,7 +48,7 @@
     </div>
     {% include './components/panel.html' %}
 
-    <div class="page-header row" style="margin-left:1rem">
+    <div class="page-header row" style="margin-left:1rem margin-top:7rem">
       <h3 class="col-sm-1">Entities</h3>
       {% if status_ner == 'OK' %}
         <span class="help-block alert alert-success col-sm-2" role="alert">

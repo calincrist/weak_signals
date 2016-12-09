@@ -1,16 +1,20 @@
 #!/usr/bin/env python
 from django.core.files.storage import FileSystemStorage
 import docx2txt
-import subprocess
+from subprocess import Popen, PIPE, STDOUT
+
+import json
+
 from LocalModules.ApiClientModule import api_client
 from LocalModules.NER import ner
 
 
 def run_command(command):
-    p = subprocess.Popen(command,
-                     stdout=subprocess.PIPE,
+    p = Popen(command,
+                     stdout=PIPE, stderr=STDOUT,
                      shell=True)
-    return iter(p.stdout.readline, b'')
+    return p.stdout
+    # return iter(.read, b'')
 
 
 class FileHandler(object):
@@ -19,7 +23,6 @@ class FileHandler(object):
         self.file_object = file
         self.filename = self.fs.save(file.name, file)
         self.big_response = {}
-        # self.fs.delete(filename)
 
     def handle_file(self):
         '''Check by content-type and treat accordingly.'''
@@ -31,16 +34,20 @@ class FileHandler(object):
         source_content = self.check_source()
         self.sentiment_analysis()
         entities = ner.get_ner(self.contents)
+        polarity = self.sentiment_analysis()
+        resp_polarity = {
+            # 'status': 'OK',
+            'data': polarity['polarity'].upper()
+        }
 
         return {'status': 'OK',
-                'message': 'You successfully uploaded the input file.'}, source_content, entities
+                'message': 'You successfully uploaded the input file.'}, source_content, entities, resp_polarity
 
 
     def sentiment_analysis(self):
-        sentiment = run_command('java -jar ../Five-PointScaleAlgorithm.jar' + self.contents)
-        print('---->>')
-        print(sentiment)
-        print('<<----')
+        cmd = 'java -jar ./LocalModules/ProiectSentA/Five-PointScaleAlgorithm.jar "' + str(self.contents) + '"'
+        sentiment = run_command(cmd).read()
+        return json.loads(sentiment)
 
     def read_contents(self):
         contents = ''

@@ -2,19 +2,14 @@ import nltk
 import sys
 import json
 
-class Verif:
-    x = 0
 
 def get_ner(sample):
-
-    if Verif.x == 0:
-        nltk.download('words')
-        nltk.download('punkt')
-        nltk.download('maxent_ne_chunker')
-        nltk.download('maxent_treebank_pos_tagger')
-        nltk.download('averaged_perceptron_tagger')
-        Verif.x = 1
-
+    
+    # nltk.download('words')
+    # nltk.download('punkt')
+    # nltk.download('maxent_ne_chunker')
+    # nltk.download('maxent_treebank_pos_tagger')
+    # nltk.download('averaged_perceptron_tagger')
 
     def extract_entity_names(t):
         entity_names = []
