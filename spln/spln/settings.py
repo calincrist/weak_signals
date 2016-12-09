@@ -26,7 +26,7 @@ SECRET_KEY = 'u5&g%hs8!zo_$t&-0u$)%*fczm+&e9m_6a!l626k(wwj-n$0w('
 DEBUG = True
 
 if DEBUG == True:
-    ALLOWED_HOSTS = [u'weak-signals.herokuapp.com', u'localhost']
+    ALLOWED_HOSTS = [u'weak-signals.herokuapp.com', u'localhost', u'0.0.0.0']
 else:
     ALLOWED_HOSTS = [u'weak-signals.herokuapp.com']
 
