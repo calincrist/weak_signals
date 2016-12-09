@@ -36,7 +36,7 @@ class FileHandler(object):
         entities = ner.get_ner(self.contents)
         polarity = self.sentiment_analysis()
         resp_polarity = {
-            # 'status': 'OK',
+            'status': 'OK',
             'data': polarity['polarity'].upper()
         }
 

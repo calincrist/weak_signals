@@ -1,10 +1,13 @@
 {% load static %}
 
 {% block panel-content %}
-<div class="col-sm-3">
-    <ul class="list-group">
-        <li class="list-group-item">{{ data_sentiment }}</li>
-    </ul>
-</div>
+
+{% if status_sentiment == 'OK' %}
+  <div class="col-sm-3">
+      <ul class="list-group">
+          <li class="list-group-item">{{ data_sentiment }}</li>
+      </ul>
+  </div>
+{% endif %}
 
 {% endblock panel-content %}

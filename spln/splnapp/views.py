@@ -22,7 +22,7 @@ def index(request):
             'message_ner': response_ner['message'],
             'data_ner': response_ner['data'],
 
-            # 'status_sentiment': response_sent['status'],
+            'status_sentiment': response_sent['status'],
             # 'message_sentiment': response_sent['message'],
             'data_sentiment': response_sent['data']
         }
