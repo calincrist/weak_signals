@@ -9,9 +9,9 @@ def get_ner(sample):
 
     if Verif.x == 0:
         nltk.download('punkt')
-        nltk.download('punkt')
-        nltk.download('punkt')
-        nltk.download('punkt')
+        nltk.download('maxent_ne_chunker')
+        nltk.download('maxent_treebank_pos_tagger')
+        nltk.download('averaged_perceptron_tagger')
         Verif.x = 1
 
 
