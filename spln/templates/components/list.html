@@ -12,8 +12,8 @@
       <dd class="text-overflow"> <a href="{{ value }}">Link to news.</a>  </dd>
 
     {% elif key == 'ThumbnailUrl' and value != 'no thumbnailUrl' %}
-      <dt> {{ key }} </dt>
-      <dd class="text-overflow"> <img src="{{ value }}" alt="..." class="img-thumbnail"> </dd>
+      {# <dt> {{ key }} </dt>#}
+      {# <dd class="text-overflow"> <img src="{{ value }}" alt="..." class="img-thumbnail"> </dd>#}
 
     {% elif key == 'ThumbnailUrl'%}
       {# continue/pass #}
@@ -23,7 +23,6 @@
       <dd class="text-overflow"> {{ value }} </dd>
 
     {% endif %}
-
   {% endfor %}
 </dl>
 {% endfor %}

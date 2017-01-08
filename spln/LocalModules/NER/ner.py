@@ -4,7 +4,7 @@ import json
 
 
 def get_ner(sample):
-    
+
     # nltk.download('words')
     # nltk.download('punkt')
     # nltk.download('maxent_ne_chunker')
@@ -43,4 +43,5 @@ def get_ner(sample):
     data['status'] = 'OK'
     data['message'] = 'Entities found.'
     data['data'] = entity_names
+
     return data

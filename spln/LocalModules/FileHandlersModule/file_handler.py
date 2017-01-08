@@ -8,6 +8,13 @@ import json
 from LocalModules.ApiClientModule import api_client
 from LocalModules.NER import ner
 
+import logging
+
+logger = logging.getLogger('root')
+FORMAT = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
+logging.basicConfig(format=FORMAT)
+logger.setLevel(logging.DEBUG)
+
 
 def run_command(command):
     p = Popen(command,
@@ -70,8 +77,13 @@ class FileHandler(object):
     def check_source(self):
         response_content = api_client.check_source(self.contents)
         response_title = (api_client.check_source(self.filename))
+        response = []
 
-        response = {x['Url']:x for x in response_content + response_title}.values()
+        try:
+            response = {x['Url']:x for x in response_content + response_title}.values()
+        except (RuntimeError, TypeError, NameError) as e:
+            logger.error("Error: {0}".format(e))
+            pass
 
         if response == []:
             return {'status': 'ERROR',
@@ -81,7 +93,7 @@ class FileHandler(object):
 
         return {'status': 'OK',
                 'message': 'These are possible news sources.',
-                'data': response
+                'data': [response[0]]
                 }
 
 
