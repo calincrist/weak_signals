@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from django.core.files.storage import FileSystemStorage
 import docx2txt
 from subprocess import Popen, PIPE, STDOUT

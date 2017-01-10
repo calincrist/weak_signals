@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import requests
 
@@ -16,6 +17,8 @@ class ApiClient(object):
 
     def make_request(self, body=None):
         if self.params['method'] == 'GET':
+            print('-----------------')
+            print(self.params)
             return requests.get(self._url(self.params['query']))
 
         if self.params['method'] == 'POST':
