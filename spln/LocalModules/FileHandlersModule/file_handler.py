@@ -63,11 +63,11 @@ class FileHandler(object):
         cmd = 'java -jar spln/LocalModules/ProiectSentA/Five-PointScaleAlgorithm.jar "' + str(self.contents) + '"'
         cmd_result = run_command(cmd).read()
         try:
-            sentiments = json.loads()
+            sentiments = json.loads(cmd_result)
             return sentiments
         except (RuntimeError, TypeError, NameError, ValueError) as e:
             logger.error("Error: {0}".format(e))
-            logger.error("--- {0} ---".format(cmd_result))
+            logger.error("---\n {0} ---\n".format(cmd_result))
             return { 'polarity': 'None' }
 
 
