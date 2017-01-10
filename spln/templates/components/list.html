@@ -15,7 +15,7 @@
       {# <dt> {{ key }} </dt>#}
       {# <dd class="text-overflow"> <img src="{{ value }}" alt="..." class="img-thumbnail"> </dd>#}
 
-    {% elif key == 'ThumbnailUrl'%}
+    {% elif key == 'ThumbnailUrl' or key == 'Description' %}
       {# continue/pass #}
 
     {% else %}
