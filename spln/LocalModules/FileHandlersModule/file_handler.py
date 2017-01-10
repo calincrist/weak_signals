@@ -54,11 +54,16 @@ class FileHandler(object):
 
 
     def sentiment_analysis(self):
+
+        logger.debug('pwd: ')
+        logger.debug(run_command('pwd').read())
+
         cmd = 'java -jar ./LocalModules/ProiectSentA/Five-PointScaleAlgorithm.jar "' + str(self.contents) + '"'
-        sentiment = run_command(cmd).read()
+
         try:
-            print('===========')
-            print(sentiment)
+            sentiment = run_command(cmd).read()
+            logger.debug('===========')
+            logger.debug(sentiment)
             sentiments = json.loads(sentiment)
             return sentiments
         except (RuntimeError, TypeError, NameError) as e:
