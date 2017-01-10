@@ -58,6 +58,9 @@ class FileHandler(object):
         logger.debug('pwd: ')
         logger.debug(run_command('pwd').read())
 
+        logger.debug('ls: ')
+        logger.debug(run_command('ls').read())
+
         cmd = 'java -jar ./LocalModules/ProiectSentA/Five-PointScaleAlgorithm.jar "' + str(self.contents) + '"'
 
         try:
