@@ -52,24 +52,20 @@ class FileHandler(object):
         return {'status': 'OK',
                 'message': 'You successfully uploaded the input file.'}, source_content, entities, resp_polarity
 
-
     def sentiment_analysis(self):
 
         logger.debug('pwd: ')
         logger.debug(run_command('pwd').read())
 
         logger.debug('ls: ')
-        logger.debug(run_command('ls').read())
+        logger.debug(run_command('ls spln').read())
 
-        cmd = 'java -jar ./LocalModules/ProiectSentA/Five-PointScaleAlgorithm.jar "' + str(self.contents) + '"'
+        cmd = 'java -jar spln/LocalModules/ProiectSentA/Five-PointScaleAlgorithm.jar "' + str(self.contents) + '"'
 
         try:
-            sentiment = run_command(cmd).read()
-            logger.debug('===========')
-            logger.debug(sentiment)
-            sentiments = json.loads(sentiment)
+            sentiments = json.loads(run_command(cmd).read())
             return sentiments
-        except (RuntimeError, TypeError, NameError) as e:
+        except (RuntimeError, TypeError, NameError, ValueError) as e:
             logger.error("Error: {0}".format(e))
             return {}
 
