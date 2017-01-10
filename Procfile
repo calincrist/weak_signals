@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath spln spln.wsgi
+web: gunicorn spln.wsgi:application
