@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bd764ce9-bda2-4be2-920b-4c3d6dda17e6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spln/LocalModules/FileHandlersModule/file_handler.py" afterPath="$PROJECT_DIR$/spln/LocalModules/FileHandlersModule/file_handler.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spln/LocalModules/NER/ner.py" afterPath="$PROJECT_DIR$/spln/LocalModules/NER/ner.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spln/splnapp/urls.py" afterPath="$PROJECT_DIR$/spln/splnapp/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spln/splnapp/views.py" afterPath="$PROJECT_DIR$/spln/splnapp/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +25,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spln/splnapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="75" column="32" lean-forward="false" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
+            <state relative-caret-position="294">
+              <caret line="51" column="34" lean-forward="true" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -58,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ner.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ner.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spln/LocalModules/NER/ner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+            <state relative-caret-position="270">
+              <caret line="18" column="23" lean-forward="false" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -70,16 +68,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="file_handler.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="file_handler.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spln/LocalModules/FileHandlersModule/file_handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="74" column="46" lean-forward="false" selection-start-line="74" selection-start-column="46" selection-end-line="74" selection-end-column="46" />
+            <state relative-caret-position="338">
+              <caret line="117" column="62" lean-forward="false" selection-start-line="117" selection-start-column="62" selection-end-line="117" selection-end-column="62" />
               <folding>
                 <element signature="e#46#78#0" expanded="true" />
                 <element signature="e#1217#1255#0" expanded="false" />
                 <element signature="e#2807#3024#0" expanded="false" />
-                <element signature="e#3284#4179#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -118,10 +115,10 @@
         <option value="$PROJECT_DIR$/spln/LocalModules/ApiClientModule/api_client.py" />
         <option value="$PROJECT_DIR$/media_cdn/fisier.txt" />
         <option value="$PROJECT_DIR$/spln/LocalModules/Topics/topics.py" />
-        <option value="$PROJECT_DIR$/spln/splnapp/views.py" />
         <option value="$PROJECT_DIR$/spln/splnapp/urls.py" />
         <option value="$PROJECT_DIR$/spln/LocalModules/FileHandlersModule/file_handler.py" />
         <option value="$PROJECT_DIR$/spln/LocalModules/NER/ner.py" />
+        <option value="$PROJECT_DIR$/spln/splnapp/views.py" />
       </list>
     </option>
   </component>
@@ -601,7 +598,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486234501267</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added new endpoint for NER.">
+      <created>1486240934451</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1486240934451</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -637,7 +641,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added django rest framework.&#10;Added new endpoint for source.&#10;Added new endpoint for upload." />
     <MESSAGE value="Added new endpoint for topics." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new endpoint for topics." />
+    <MESSAGE value="Added new endpoint for NER." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new endpoint for NER." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -974,14 +979,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spln/splnapp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -992,10 +989,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/spln/LocalModules/NER/ner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="23" lean-forward="false" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/spln/splnapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="75" column="32" lean-forward="false" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
+        <state relative-caret-position="294">
+          <caret line="51" column="34" lean-forward="true" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
@@ -1004,23 +1019,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spln/LocalModules/FileHandlersModule/file_handler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="74" column="46" lean-forward="false" selection-start-line="74" selection-start-column="46" selection-end-line="74" selection-end-column="46" />
+        <state relative-caret-position="338">
+          <caret line="117" column="62" lean-forward="false" selection-start-line="117" selection-start-column="62" selection-end-line="117" selection-end-column="62" />
           <folding>
             <element signature="e#46#78#0" expanded="true" />
             <element signature="e#1217#1255#0" expanded="false" />
             <element signature="e#2807#3024#0" expanded="false" />
-            <element signature="e#3284#4179#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spln/LocalModules/NER/ner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>

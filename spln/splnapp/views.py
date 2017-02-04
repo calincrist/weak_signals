@@ -34,7 +34,6 @@ class UploadFileView(APIView):
                 file_handler.upload_file(myfile)
 
             path = settings.MEDIA_ROOT + '/' + request.session['filename']
-            fileHandler = FileHandler(path)
 
             request.session['filename'] = file_name
             request.session['path'] = path
