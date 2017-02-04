@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+from django.conf import settings
+from django.core.files import File
 from django.core.files.storage import FileSystemStorage
 import docx2txt
 from subprocess import Popen, PIPE, STDOUT
@@ -27,11 +28,14 @@ def run_command(command):
 
 
 class FileHandler(object):
-    def __init__(self, file):
-        self.fs = FileSystemStorage()
-        self.file_object = file
-        self.filename = self.fs.save(file.name, file)
-        self.big_response = {}
+    def __init__(self, file_path):
+
+        self.path = file_path
+        with open(file_path, 'r') as f:
+            self.file_object = File(f)
+            self.filename = self.file_object.name
+            self.big_response = {}
+            self.read_contents()
 
     def handle_file(self):
         '''Check by content-type and treat accordingly.'''
@@ -40,17 +44,17 @@ class FileHandler(object):
                      'message' : 'Wrong file type.'}
 
         self.read_contents()
-        source_content = self.check_source()
-        self.sentiment_analysis()
-        entities = ner.get_ner(self.contents)
-        polarity = self.sentiment_analysis()
-        resp_polarity = {
-            'status': 'OK',
-            'data': polarity['polarity'].upper()
-        }
-
-        return {'status': 'OK',
-                'message': 'You successfully uploaded the input file.'}, source_content, entities, resp_polarity
+        # source_content = self.check_source()
+        # self.sentiment_analysis()
+        # entities = ner.get_ner(self.contents)
+        # polarity = self.sentiment_analysis()
+        # resp_polarity = {
+        #     'status': 'OK',
+        #     'data': polarity['polarity'].upper()
+        # }
+        #
+        # return {'status': 'OK',
+        #         'message': 'You successfully uploaded the input file.'}, source_content, entities, resp_polarity
 
     def sentiment_analysis(self):
 
@@ -81,37 +85,46 @@ class FileHandler(object):
             self.contents = self.read_docx()
 
     def read_docx(self):
-        return docx2txt.process(self.fs.path(self.file_object))
+        return docx2txt.process(self.path)
 
     def read_txt(self):
         if not self.file_object.multiple_chunks():
-            with open(self.fs.path(self.file_object), 'r') as f:
+            with open(self.path, 'r') as f:
                 return f.read()
 
 
     def check_source(self):
         response_content = api_client.check_source(self.contents)
-        response_title = (api_client.check_source(self.filename))
+        response_title = api_client.check_source(self.filename)
         response = []
 
+        print(response_content)
+        print(response_title)
+
         try:
-            response = {x['Url']:x for x in response_content + response_title}.values()
+            if response_title or response_content:
+                response = {x['Url']:x for x in response_content + response_title}.values()
         except (RuntimeError, TypeError, NameError) as e:
             logger.error("Error: {0}".format(e))
             pass
 
         if response == []:
             return {'status': 'ERROR',
+                    'status_code': 404,
                     'message': 'No sources found :(',
                     'data': response
                     }
 
         return {'status': 'OK',
+                'status_code': 200,
                 'message': 'These are possible news sources.',
                 'data': [response[0]]
                 }
 
 
-
-def handle_file(file):
-    return FileHandler(file).handle_file()
+def upload_file(file):
+    destination = open(settings.MEDIA_ROOT + '/' + file.name, 'wb+')
+    print(destination)
+    for chunk in file.chunks():
+        destination.write(chunk)
+    destination.close()
