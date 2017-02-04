@@ -5,6 +5,7 @@ from django.core.files import File
 import docx2txt
 from LocalModules.ApiClientModule import api_client
 from LocalModules.Topics.topics import *
+from LocalModules.NER import ner
 
 import logging
 
@@ -68,6 +69,22 @@ class FileHandler(object):
             logger.error("Error: {0}".format(e))
             logger.error("---\n {0} ---\n".format(cmd_result))
             return { 'polarity': 'None' }
+
+
+    def ner(self):
+        response = ner.get_ner([self.contents])
+
+        if response:
+            return {'status': 'OK',
+                    'status_code': 200,
+                    'message': 'These are possible news sources.',
+                    'data': response
+                    }
+
+        return {'status': 'ERROR',
+                'status_code': 404,
+                'message': 'No NER found :(',
+                }
 
 
     def read_contents(self):

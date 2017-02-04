@@ -65,3 +65,15 @@ class TopicsView(APIView):
 
         response = fileHandler.get_topics()
         return Response(response, status=200)
+
+
+class NERView(APIView):
+
+    def get(self, request):
+        path = request.session['path']
+        fileHandler = FileHandler(path)
+
+        response = fileHandler.ner()
+        return Response(response, status=200)
+
+
