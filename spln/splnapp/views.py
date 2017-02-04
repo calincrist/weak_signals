@@ -15,6 +15,7 @@ FORMAT = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
 logging.basicConfig(format=FORMAT)
 logger.setLevel(logging.DEBUG)
 
+
 class UploadFileView(APIView):
     parser_classes = (FileUploadParser,)
 
@@ -32,44 +33,35 @@ class UploadFileView(APIView):
                 file_name = filename
                 file_handler.upload_file(myfile)
 
-            # if not 'filename' in request.session:
+            path = settings.MEDIA_ROOT + '/' + request.session['filename']
+            fileHandler = FileHandler(path)
+
             request.session['filename'] = file_name
-            # else:
-            #     print(file_name + ' already in session.')
+            request.session['path'] = path
 
         except (RuntimeError, TypeError, NameError, AttributeError) as e:
             logger.error("Error: {0}".format(e))
             return Response(status=400)
 
-        # response_file, response_source, response_ner, response_sent = file_handler.handle_file(file_obj)
-        # response_params = {
-        #     'uploaded_file_url': filename,
-        #     'status': response_file['status'],
-        #     'message': response_file['message'],
-        #
-        #     'status_source': response_source['status'],
-        #     'message_source': response_source['message'],
-        #     'data_source': response_source['data'],
-        #
-        #     'status_ner': response_ner['status'],
-        #     'message_ner': response_ner['message'],
-        #     'data_ner': response_ner['data'],
-        #
-        #     'status_sentiment': response_sent['status'],
-        #     # 'message_sentiment': response_sent['message'],
-        #     'data_sentiment': response_sent['data']
-        # }
-
-
-        # return Response(response_params, status=204)
         return Response(status=204)
 
 class SourceView(APIView):
 
     def get(self, request):
+        path = request.session['path']
+        fileHandler = FileHandler(path)
+        response = fileHandler.check_source()
 
-        path = settings.MEDIA_ROOT + '/' + request.session['filename']
-        file_handler = FileHandler(path)
-        response = file_handler.check_source()
+        if not response['data']:
+            Response(response, status=404)
 
+        return Response(response, status=200)
+
+class TopicsView(APIView):
+
+    def get(self, request):
+        path = request.session['path']
+        fileHandler = FileHandler(path)
+
+        response = fileHandler.get_topics()
         return Response(response, status=200)

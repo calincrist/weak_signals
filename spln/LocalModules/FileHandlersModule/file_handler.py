@@ -2,14 +2,9 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.core.files import File
-from django.core.files.storage import FileSystemStorage
 import docx2txt
-from subprocess import Popen, PIPE, STDOUT
-
-import json
-
 from LocalModules.ApiClientModule import api_client
-from LocalModules.NER import ner
+from LocalModules.Topics.topics import *
 
 import logging
 
@@ -120,6 +115,22 @@ class FileHandler(object):
                 'message': 'These are possible news sources.',
                 'data': [response[0]]
                 }
+
+    def get_topics(self):
+        response = retrieve_topics(self.contents)
+
+        if response:
+            return {'status': 'OK',
+                    'status_code': 200,
+                    'message': 'Here are the topics.',
+                    'data': response
+                    }
+
+        return {'status': 'ERROR',
+                'status_code': 404,
+                'message': 'No topics found :(',
+                }
+
 
 
 def upload_file(file):
