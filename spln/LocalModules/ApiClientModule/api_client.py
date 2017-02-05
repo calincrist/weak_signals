@@ -25,6 +25,25 @@ class ApiClient(object):
             return requests.get(self._url(self.params['query']), json=body)
 
 
+def sentiments(endpoint, text):
+    sent_url = 'https://octak.herokuapp.com/'
+    endpoint_rulz = endpoint + '?text={:s}'
+
+    params = {
+        'method' : 'GET',
+        'query' : text
+    }
+
+    response = ApiClient(sent_url, endpoint_rulz, params).make_request()
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return [{}]
+
+
+
+
 def check_source(title):
     news_search_url = 'http://spnl-news-search.apphb.com/'
     news_search_endpoint = 'api/News/searchnews?query={:s}'

@@ -54,21 +54,28 @@ class FileHandler(object):
 
     def sentiment_analysis(self):
 
-        logger.debug('pwd: ')
-        logger.debug(run_command('pwd').read())
+        response_content = api_client.sentiments('simpleSA', self.contents)
+        print(response_content)
 
-        logger.debug('ls: ')
-        logger.debug(run_command('ls spln').read())
-
-        cmd = 'java -jar spln/LocalModules/ProiectSentA/Five-PointScaleAlgorithm.jar "' + str(self.contents) + '"'
-        cmd_result = run_command(cmd).read()
+        response = []
         try:
-            sentiments = json.loads(cmd_result)
-            return sentiments
-        except (RuntimeError, TypeError, NameError, ValueError) as e:
+            response.append(response_content)
+        except (RuntimeError, TypeError, NameError) as e:
             logger.error("Error: {0}".format(e))
-            logger.error("---\n {0} ---\n".format(cmd_result))
-            return { 'polarity': 'None' }
+            pass
+
+        if response == []:
+            return {'status': 'ERROR',
+                    'status_code': 404,
+                    'message': 'No sentiments found :(',
+                    'data': response
+                    }
+
+        return {'status': 'OK',
+                'status_code': 200,
+                'message': 'These are possible sentiments.',
+                'data': [response[0]]
+                }
 
 
     def ner(self):

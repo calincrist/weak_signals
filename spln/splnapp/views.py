@@ -48,11 +48,16 @@ class UploadFileView(APIView):
 
             if not 'filename' in request.session:
                 request.session['filename'] = ''
+                
+            request.session['filename'] = file_name
 
             path = settings.MEDIA_ROOT + '/' + request.session['filename']
-
-            request.session['filename'] = file_name
+            if not 'path' in request.session:
+                request.session['path'] = path
             request.session['path'] = path
+
+
+
 
         except (RuntimeError, TypeError, NameError, AttributeError) as e:
             logger.error("Error: {0}".format(e))
@@ -89,6 +94,15 @@ class TopicsView(APIView):
         response = fileHandler.get_topics()
         return Response(response, status=200)
 
+
+class SentimentsView(APIView):
+
+    def get(self, request):
+        path = request.session['path']
+        fileHandler = FileHandler(path)
+
+        response = fileHandler.sentiment_analysis()
+        return Response(response, status=200)
 
 class NERView(APIView):
 
