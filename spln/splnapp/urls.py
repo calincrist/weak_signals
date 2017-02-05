@@ -8,7 +8,7 @@ urlpatterns = [
     # url(r'^$', views.index),
     url(r'^upload/(?P<filename>[^/]+)/$', UploadFileView.as_view()),
     url(r'source/(?P<fileId>[^/]+)/$', SourceView.as_view()),
-    url(r'topics/$', TopicsView.as_view()),
-    url(r'ner/$', NERView.as_view()),
-    url(r'sentiments/$', SentimentsView.as_view())
+    url(r'topics/(?P<fileId>[^/]+)/$', TopicsView.as_view()),
+    url(r'ner/(?P<fileId>[^/]+)/$', NERView.as_view()),
+    url(r'sentiments/(?P<fileId>[^/]+)/$', SentimentsView.as_view())
 ]
