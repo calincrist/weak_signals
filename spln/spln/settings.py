@@ -30,6 +30,8 @@ if DEBUG == True:
 else:
     ALLOWED_HOSTS = [u'weak-signals.herokuapp.com']
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Application definition
 

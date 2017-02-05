@@ -21,6 +21,17 @@ logger.setLevel(logging.DEBUG)
 class UploadFileView(APIView):
     parser_classes = (FileUploadParser,)
 
+    # def options(self, request):
+    #     response = {}
+    #     response["Access-Control-Allow-Origin"] = "*"
+    #     response["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+    #     response["Access-Control-Max-Age"] = "1000"
+    #     response["Access-Control-Allow-Headers"] = "*"
+    #
+    #     print('Headers: ' + str(response))
+    #
+    #     return Response(headers=response, status=200)
+
     def post(self, request, filename, format=None):
 
         if not request.session.session_key:
