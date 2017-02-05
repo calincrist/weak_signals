@@ -1,0 +1,23 @@
+------WebKitFormBoundaryEaNnAOELWIIuVY3G
+Content-Disposition: form-data; name="file"; filename="requirements.txt"
+Content-Type: text/plain
+
+appdirs==1.4.0
+Django==1.10.4
+django-cors-headers==2.0.1
+djangorestframework==3.5.3
+docx2txt==0.6
+gunicorn==19.6.0
+nltk==3.2.1
+numpy==1.11.2
+packaging==16.8
+pandas==0.19.2
+pyparsing==2.1.10
+pysolr==3.6.0
+python-dateutil==2.6.0
+pytz==2016.10
+requests==2.12.3
+six==1.10.0
+watson-developer-cloud==0.23.0
+
+------WebKitFormBoundaryEaNnAOELWIIuVY3G--

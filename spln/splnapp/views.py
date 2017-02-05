@@ -19,7 +19,7 @@ logger.setLevel(logging.DEBUG)
 class UploadFileView(APIView):
     parser_classes = (FileUploadParser,)
 
-    def put(self, request, filename, format=None):
+    def post(self, request, filename, format=None):
 
         if not request.session.session_key:
             print('create session')
@@ -33,6 +33,9 @@ class UploadFileView(APIView):
                 file_name = filename
                 file_handler.upload_file(myfile)
 
+            if not 'filename' in request.session:
+                request.session['filename'] = ''
+                
             path = settings.MEDIA_ROOT + '/' + request.session['filename']
 
             request.session['filename'] = file_name
@@ -74,5 +77,3 @@ class NERView(APIView):
 
         response = fileHandler.ner()
         return Response(response, status=200)
-
-
