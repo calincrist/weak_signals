@@ -34,7 +34,7 @@ class UploadFileView(APIView):
             file_name = ''
             if request.FILES['file']:
                 myfile = request.FILES['file']
-                file_name = 'filename'
+                file_name = filename
                 file_handler.upload_file(myfile)
 
             if not 'filename' in request.session:
