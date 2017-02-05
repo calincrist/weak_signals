@@ -53,6 +53,8 @@ class UploadFileView(APIView):
         response["Access-Control-Max-Age"] = "1000"
         response["Access-Control-Allow-Headers"] = "*"
 
+        print('Headers: ' + str(response))
+
         return Response(headers=response, status=204)
 
 class SourceView(APIView):
