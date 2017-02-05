@@ -11,6 +11,8 @@ from LocalModules.FileHandlersModule import file_handler
 from LocalModules.FileHandlersModule.file_handler import FileHandler
 import json
 
+from models import FileModel
+
 import logging
 logger = logging.getLogger('root')
 FORMAT = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
@@ -20,17 +22,6 @@ logger.setLevel(logging.DEBUG)
 
 class UploadFileView(APIView):
     parser_classes = (FileUploadParser,)
-
-    # def options(self, request):
-    #     response = {}
-    #     response["Access-Control-Allow-Origin"] = "*"
-    #     response["Access-Control-Allow-Methods"] = "POST, OPTIONS"
-    #     response["Access-Control-Max-Age"] = "1000"
-    #     response["Access-Control-Allow-Headers"] = "*"
-    #
-    #     print('Headers: ' + str(response))
-    #
-    #     return Response(headers=response, status=200)
 
     def post(self, request, filename, format=None):
 
@@ -48,7 +39,7 @@ class UploadFileView(APIView):
 
             if not 'filename' in request.session:
                 request.session['filename'] = ''
-                
+
             request.session['filename'] = file_name
 
             path = settings.MEDIA_ROOT + '/' + request.session['filename']
@@ -57,27 +48,29 @@ class UploadFileView(APIView):
             request.session['path'] = path
 
 
+            file = FileModel(name=filename, path=path)
+            file.save()
+
+
 
 
         except (RuntimeError, TypeError, NameError, AttributeError) as e:
             logger.error("Error: {0}".format(e))
             return Response(status=400)
 
-        response = {}
-        response["Access-Control-Allow-Origin"] = "*"
-        response["Access-Control-Allow-Methods"] = "POST, OPTIONS"
-        response["Access-Control-Max-Age"] = "1000"
-        response["Access-Control-Allow-Headers"] = "*"
+        response = {
+            'fileId' : file.file_id
+        }
 
-        print('Headers: ' + str(response))
-
-        return Response(headers=response, status=204)
+        return Response(response, status=200)
 
 class SourceView(APIView):
 
-    def get(self, request):
-        path = request.session['path']
-        fileHandler = FileHandler(path)
+    def get(self, request, fileId):
+
+        file = FileModel.objects.get(file_id=fileId)
+
+        fileHandler = FileHandler(file.path)
         response = fileHandler.check_source()
 
         if not response['data']:
@@ -87,9 +80,10 @@ class SourceView(APIView):
 
 class TopicsView(APIView):
 
-    def get(self, request):
-        path = request.session['path']
-        fileHandler = FileHandler(path)
+    def get(self, request, fileId):
+
+        file = FileModel.objects.get(file_id=fileId)
+        fileHandler = FileHandler(file.path)
 
         response = fileHandler.get_topics()
         return Response(response, status=200)
@@ -97,18 +91,20 @@ class TopicsView(APIView):
 
 class SentimentsView(APIView):
 
-    def get(self, request):
-        path = request.session['path']
-        fileHandler = FileHandler(path)
+    def get(self, request, fileId):
+
+        file = FileModel.objects.get(file_id=fileId)
+        fileHandler = FileHandler(file.path)
 
         response = fileHandler.sentiment_analysis()
         return Response(response, status=200)
 
 class NERView(APIView):
 
-    def get(self, request):
-        path = request.session['path']
-        fileHandler = FileHandler(path)
+    def get(self, request, fileId):
+
+        file = FileModel.objects.get(file_id=fileId)
+        fileHandler = FileHandler(file.path)
 
         response = fileHandler.ner()
         return Response(response, status=200)

@@ -40,17 +40,6 @@ class FileHandler(object):
                      'message' : 'Wrong file type.'}
 
         self.read_contents()
-        # source_content = self.check_source()
-        # self.sentiment_analysis()
-        # entities = ner.get_ner(self.contents)
-        # polarity = self.sentiment_analysis()
-        # resp_polarity = {
-        #     'status': 'OK',
-        #     'data': polarity['polarity'].upper()
-        # }
-        #
-        # return {'status': 'OK',
-        #         'message': 'You successfully uploaded the input file.'}, source_content, entities, resp_polarity
 
     def sentiment_analysis(self):
 
