@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
     # url(r'^$', views.index),
-    url(r'^upload/(?P<filename>[^/]+)$', UploadFileView.as_view()),
+    url(r'^upload/(?P<filename>[^/]+)/$', UploadFileView.as_view()),
     url(r'source/$', SourceView.as_view()),
     url(r'topics/$', TopicsView.as_view()),
     url(r'ner/$', NERView.as_view()),
