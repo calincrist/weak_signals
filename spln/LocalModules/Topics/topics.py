@@ -16,6 +16,10 @@ def run_command(command):
 
 def retrieve_topics(text):
 
+
+    print(run_command('pwd').read())
+    print(run_command('ls').read())
+
     api_key = 'b337f77af3b11496f1dff8bd9b38c1564100ed58'
     cmd = 'java -jar LocalModules/Topics/run2.jar "' + api_key + '" "' + text + '"'
     print(cmd)
