@@ -3,11 +3,13 @@ from django.shortcuts import render
 from rest_framework.parsers import FileUploadParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.http import HttpResponse
 
 from django.conf import settings
 
 from LocalModules.FileHandlersModule import file_handler
 from LocalModules.FileHandlersModule.file_handler import FileHandler
+import json
 
 import logging
 logger = logging.getLogger('root')
@@ -35,7 +37,7 @@ class UploadFileView(APIView):
 
             if not 'filename' in request.session:
                 request.session['filename'] = ''
-                
+
             path = settings.MEDIA_ROOT + '/' + request.session['filename']
 
             request.session['filename'] = file_name
@@ -45,7 +47,13 @@ class UploadFileView(APIView):
             logger.error("Error: {0}".format(e))
             return Response(status=400)
 
-        return Response(status=204)
+        response = {}
+        response["Access-Control-Allow-Origin"] = "*"
+        response["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+        response["Access-Control-Max-Age"] = "1000"
+        response["Access-Control-Allow-Headers"] = "*"
+
+        return Response(headers=response, status=204)
 
 class SourceView(APIView):
 
