@@ -147,8 +147,21 @@ class FileHandler(object):
 
 
 def upload_file(file):
-    destination = open(settings.MEDIA_ROOT + '/' + file.name, 'wb+')
+    path = settings.MEDIA_ROOT + '/' + file.name
+    destination = open(path, 'wb+')
     print(destination)
     for chunk in file.chunks():
         destination.write(chunk)
     destination.close()
+
+    with open(path, 'r') as fin:
+        data = fin.read().splitlines(True)
+    with open(path, 'w') as fout:
+        fout.writelines(data[4:])
+
+    import os
+    with open(path, 'r+') as f:
+      f.seek(0, os.SEEK_END)
+      while f.tell() and f.read(1) != '\n':
+        f.seek(-2, os.SEEK_CUR)
+      f.truncate()

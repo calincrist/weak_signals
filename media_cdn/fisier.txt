@@ -1,7 +1,3 @@
-------WebKitFormBoundary3FYQZZhPQABOxCRW
-Content-Disposition: form-data; name="file"; filename="requirements.txt"
-Content-Type: text/plain
-
 appdirs==1.4.0
 Django==1.10.4
 django-cors-headers==2.0.1
@@ -20,4 +16,3 @@ requests==2.12.3
 six==1.10.0
 watson-developer-cloud==0.23.0
 
-------WebKitFormBoundary3FYQZZhPQABOxCRW--
